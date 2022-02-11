@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dice Roller</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <script>
+        function rollDice() {
+            let diceAmount = 0;
+            let typeOfDice = 0
+            let rolledDice = [];
+            let numModifier = 0;
+            let result = 0
+            diceAmount = document.getElementById("numDice").value;
+            numModifier = document.getElementById("modifier").value;
+            typeOfDice = document.getElementById("diceType").value;
+            for (let x = 0; x < diceAmount; x++) {
+                let randomNum = Math.floor(Math.random() * typeOfDice)+1;
+                result += randomNum;
+            }
+            result += Number(numModifier);
+            if (result <= 0) {
+                result = 1;
+            }
+            document.getElementById("resultRight").innerHTML = result;
+        }
+        function resetDice() {
+            document.getElementById("resultRight").innerHTML = "";
+            document.getElementById("numDice").value = "";
+            document.getElementById("diceType").value = "";
+            document.getElementById("modifier").value = "";
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div id="headerTitle">
+            DnD Dice Roller
+        </div>
+        <div id="headerInfo">
+            This a dice roller for Dungeons and Dragons. In order to see your roll, simply fill in the prompts below and tap/click roll!
+        </div>
+    </header>
+    <main>
+        <div id="inputter">
+            <div id="exampleInput">
+                Example: Roll 2 d20 +3
+            </div>
+            <form id="rollInput">
+                Roll
+                <input type="text" id="numDice" name="numberOfDice">
+                D
+                <input type="text" id="diceType" name="typeOfDice">
+                <input type="text" id="modifier" name="modifier"><br>
+            </form>
+            <div class="commands">
+                <button class="button" value="Roll!" onclick="rollDice()">Roll!</button>
+                <button class="button" value="Reset" onclick="resetDice()">Reset</button>
+            </div>
+        </div>
+        <div id="result">
+            <div class="container">
+                <p id="resultLeft">Result: </p>
+                <p id="resultRight"></p>
+            </div>
+        </div>
+
+    </main>
+    <footer>
+        <div class="footerInfo">
+            Interested in how this website was created? Send me an email at william.shultz2017@gmail.com
+        </div>
+    </footer>
+</body>
+</html>
